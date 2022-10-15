@@ -1,0 +1,554 @@
+<!doctype html>
+
+<html lang="eng">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="description" content="Lessons schedule. Session schedule. Schedule for teachers">
+    <meta name="keywords" content="Schedule">
+    <meta name="author" content="Author">
+    <title>Schedule</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .select-popup {
+            z-index: 9
+        }
+
+            .select-popup .ReactVirtualized__List {
+                background: #fff;
+                border: 1px solid #d3d3d3
+            }
+
+        .flat-virtualized-item, .grouped-virtualized-list-item {
+            background-color: initial;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: flex;
+            user-select: none
+        }
+
+            .flat-virtualized-item > div, .grouped-virtualized-list-item > div {
+                height: 100%;
+                width: 100%
+            }
+
+        .fast-option {
+            height: 100%;
+            padding-left: 1em;
+            text-overflow: ellipsis
+        }
+
+        .fast-option-focused {
+            background-color: #deebff;
+            box-sizing: border-box;
+            user-select: none
+        }
+
+        .fast-option-selected {
+            background-color: #2684ff;
+            box-sizing: border-box;
+            user-select: none
+        }
+
+        .grouped-virtualized-list-item div[role=option] {
+            cursor: pointer
+        }
+
+        .fast-option-create {
+            cursor: default !important
+        }
+    </style>
+    <style data-jss="" data-meta="MuiScopedCssBaseline">
+        .MuiScopedCssBaseline-root {
+            color: rgba(0, 0, 0, 0.87);
+            font-size: 0.875rem;
+            box-sizing: border-box;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            line-height: 1.43;
+            letter-spacing: 0.01071em;
+            background-color: #fafafa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @media print {
+            .MuiScopedCssBaseline-root {
+                background-color: #fff;
+            }
+        }
+
+        .MuiScopedCssBaseline-root *, .MuiScopedCssBaseline-root *::before, .MuiScopedCssBaseline-root *::after {
+            box-sizing: inherit;
+        }
+
+        .MuiScopedCssBaseline-root strong, .MuiScopedCssBaseline-root b {
+            font-weight: 700;
+        }
+    </style>
+    <style id="detectElementResize" type="text/css">
+        @keyframes resizeanim {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .resize-triggers {
+            animation: 1ms resizeanim;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+            .resize-triggers, .resize-triggers > div, .contract-trigger:before {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                z-index: -1;
+            }
+
+                .resize-triggers > div {
+                    background: #eee;
+                    overflow: auto;
+                }
+
+        .contract-trigger:before {
+            width: 200%;
+            height: 200%;
+        }
+    </style>
+    <style data-styled="active" data-styled-version="5.3.1">
+        * {
+            font-family: "Exo 2", sans-serif;
+        }
+
+        body {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+    <style data-emotion="css" data-s=""></style>
+    <link href="/static/css/main.css?v=1.0" rel="stylesheet">
+</head>
+
+<body>
+    <script src="static/js/scripts.js"></script>
+    <div id="root">
+        <div class="MuiScopedCssBaseline-root">
+            <div class="sc-hTZgZg fJJBFP">
+                <header class="sc-Azgjq jWLnFF">
+                    <div class="sc-bdfBQB sc-khAkCZ itdIwy exDsyF">
+                        <img src="/static/media/logo.svg" alt="logo" class="sc-gsTEea sc-dlfnuX kzWQGg bJgQKs">
+                        <div class="sc-bdfBQB sc-cOajNj jSRQIB lluBWC">
+                            <div class="sc-bdfBQB sc-dOSRxR ctRKbT lnuFxt">
+                                <div class="sc-jNMcJZ cAFajx">
+                                    <a class="sc-hKgJUU kAzpQD" href="/?groupId=6029adc8-7972-46ee-a0b3-c2794a71afc5">Розклад занять</a>
+                                </div>
+                                <div class="sc-jNMcJZ iYOCWO">
+                                    <a class="sc-hKgJUU kAzpQD" href="/sessions?groupId=6029adc8-7972-46ee-a0b3-c2794a71afc5">Розклад сесії</a>
+                                </div>
+                                <div class="sc-jNMcJZ iYOCWO">
+                                    <a class="sc-hKgJUU kAzpQD" href="/lecturers?groupId=1c0026d9-97a6-48a8-96c3-5df24dfb0021">Розклад для викладачів</a>
+                                </div>
+                            </div>
+                            <label class="sc-bBrNTY bzQHlE">
+                                Розклад занять для
+                                <div style="width: 200px;">
+                                    <div class="react-select-virtualized css-b62m3t-container">
+                                        <span id="react-select-6-live-region" class="css-7pg0cj-a11yText"></span>
+                                        <span aria-live="polite" aria-atomic="false" aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
+                                        <div class=" css-fn8a08-control">
+                                            <div class=" css-1d8n9bt">
+                                                <div class=" css-1kdmhj7-singleValue">АК-01 (ІАТ)</div>
+                                                <div class=" css-dbtfx3" data-value="">
+                                                    <input class="" style="color: inherit; background: 0px center; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px none; margin: 0px; outline: currentcolor none 0px; padding: 0px;" autocapitalize="none" autocomplete="off" autocorrect="off" id="react-select-6-input" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" aria-controls="react-select-6-listbox" aria-owns="react-select-6-listbox" role="combobox" value="">
+                                                </div>
+                                            </div>
+                                            <div class=" css-1wy0on6">
+                                                <span class=" css-43ykx9-indicatorSeparator"></span>
+                                                <div class=" css-tlfecz-indicatorContainer" aria-hidden="true">
+                                                    <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg">
+                                                        <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<div class=" css-s4s0z4-menu" id="react-select-2-listbox">
+                                            <div style="overflow: visible; width: 0px;">
+                                                <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List" role="grid" style="box-sizing: border-box; direction: ltr; height: 300px; position: relative; width: 200px; will-change: transform; overflow: auto;" tabindex="0">
+                                                    <div class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup" style="width: auto; height: 23746px; max-width: 200px; max-height: 23746px; overflow: hidden; position: relative;">
+                                                        <div class="flat-virtualized-item" style="height: 31px; left: 0px; position: absolute; top: 0px; width: 100%;">
+                                                            <div class="fast-option-focused fast-option " style="line-height: 31px;">АК-01 (ІАТ)</div>
+                                                        </div>
+                                                        <div class="flat-virtualized-item" style="height: 31px; left: 0px; position: absolute; top: 31px; width: 100%;">
+                                                            <div>
+                                                                <div class=" fast-option " style="line-height: 31px;">АК-02 (ІАТ)</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flat-virtualized-item" style="height: 31px; left: 0px; position: absolute; top: 62px; width: 100%;">
+                                                            <div>
+                                                                <div class=" fast-option " style="line-height: 31px;">АК-11 (ІАТ)</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flat-virtualized-item" style="height: 31px; left: 0px; position: absolute; top: 93px; width: 100%;">
+                                                            <div>
+                                                                <div class=" fast-option " style="line-height: 31px;">АК-12 (ІАТ)</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                        <input name="color" type="hidden" value="f9aff6fd-b85a-4b62-8f15-7060fcc0ed4a">
+                                    </div>
+                                </div>
+                            </label>
+                            <div style="width: 100%;">
+                                <div class="button style">
+                                    <div class="button active">ФЭМ</div>
+                                    <div class="button deactive">ФИСТ</div>
+                                    <div class="button active">ФПСТ</div>
+                                    <div class="button deactive">ЮФ</div>
+                                    <div class="button deactive">ФБК</div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked="">
+                            <span class="slider round" style="background-color: rgb(54, 54, 55);">
+                            </span>
+                            <span class="checker">
+                            </span>
+                        </label>
+                    </div>
+                </header>
+                <div style="overflow: hidden;">
+                    <!--  Ноутбук  -->
+                    <div class="sc-dmlqKv jhpERS agDSad">
+                        <div class="sc-dIUeWJ hqFLff">
+                            <div class="sc-hHfuMS ecdGcy">ПН-СР</div>
+                            <div class="sc-hHfuMS CtxP">ЧТ-СБ</div>
+                        </div>
+                    </div>
+                    <!--  Планшет  -->
+                    <div class="sc-dmlqKv jhpERS agDSaf">
+                        <div class="sc-dIUeWJ hqFLff">
+                            <div class="sc-hHfuMS ecdGcy">ПН-ВТ</div>
+                            <div class="sc-hHfuMS CtxP">СР-ЧТ</div>
+                            <div class="sc-hHfuMS CtxP">ПТ-СБ</div>
+                        </div>
+                    </div>
+                    <!--  Телефон  -->
+                    <div class="sc-idOiZg kWNTls">
+                        <div class="sc-dmlqKv jhpERS agDSag">
+                            <div class="sc-dIUeWJ hqFLff">
+                                <div class="sc-hHfuMS ecdGcy">ПН</div>
+                                <div class="sc-hHfuMS CtxP">ВТ</div>
+                                <div class="sc-hHfuMS CtxP">СР</div>
+                                <div class="sc-hHfuMS CtxP">ЧТ</div>
+                                <div class="sc-hHfuMS CtxP">ПТ</div>
+                                <div class="sc-hHfuMS CtxP">СБ</div>
+                            </div>
+                        </div>
+                        <div class="sc-cxFLGX ndWVA">
+                            <div class="sc-lmoMya fhgwbl counter" start="6"></div>
+                            <div class="sc-iJuVqt crdMjQ mon">Понеділок</div>
+                            <div class="sc-iJuVqt crdMjQ tue">Вівторок</div>
+                            <div class="sc-iJuVqt crdMjQ wed">Середа</div>
+                            <div class="sc-iJuVqt crdMjQ thu">Четвер</div>
+                            <div class="sc-iJuVqt crdMjQ fri">П'ятниця</div>
+                            <div class="sc-iJuVqt crdMjQ sat">Субота</div>
+                            <div class="sc-kfzBvY IVCfG">
+                                <div class="sc-bdfBQB sc-fKFxtB hNFxNP kjVeFE">
+                                    <div class="sc-bBXrwG lfsYSc">9.00</div>
+                                    <div class="sc-iwyWTf kBlLYH"></div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Политология</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Балыкин Иван Иванович</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Креативная индустрия</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Колодинская Янина Олеговна</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <!--<div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>-->
+                                    <div class="sc-pGacB gaiJRa">Подготовка к курсовой работе з дисциплины: "Методы та сбособы защиты информации"</div>
+                                    <!--<div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Колодинская Янина Олеговна</a>
+                                        <img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="sc-hBEYId eSohnc"></div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Моделирование систем</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Букатов Дмитрий Васильевич</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            
+                            <!--<div class="sc-fodVek jzmiUH">
+                                <div class="sc-fFucqa fIAOb">
+                                    <div>
+                                        <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                            <div class="sc-jSgvzq sc-iBPTik dGpQBt fzwPwA">Прак</div>
+                                        </div>
+                                        <div class="sc-pGacB gaiJRa">Аеродинаміка літальних апаратів</div>
+                                        <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP dAXgGz hleEIG gsDVDds">
+                                            <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                            <a class="sc-hKgJUU kAzpQD" href="/lecturers?lecturerId=9cede82c-3c1e-4a5c-a31c-d5f5e54a57a7">Зінченко Дмитро Миколайович</a>
+                                            <img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                            <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sc-fFucqa fIAOb">
+                                    <div>
+                                        <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                            <div class="sc-jSgvzq sc-gKseQn dGpQBt dOkiGQ">Лаб</div>
+                                        </div>
+                                        <div class="sc-pGacB gaiJRa">Аеродинаміка літальних апаратів</div>
+                                        <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP dAXgGz hleEIG gsDVDds">
+                                            <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                            <a class="sc-hKgJUU kAzpQD" href="/lecturers?lecturerId=9cede82c-3c1e-4a5c-a31c-d5f5e54a57a7">Зінченко Дмитро Миколайович</a>
+                                            <img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                            <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sc-bkzYnD AACIN asGScsa gsDVDds" onmousedown="hide_info(), show_btn()">Менше інформації</div>
+                                <div class="sc-bkzYnD AACIN asGScsa gsDVDdss" onmousedown="show_info(), hide_btn()">Більше інформації</div>
+                            </div>-->
+                            <div class="sc-kfzBvY IVCfG">
+                                <div class="sc-bdfBQB sc-fKFxtB hNFxNP kjVeFE">
+                                    <div class="sc-bBXrwG lfsYSc">10.15</div>
+                                    <div class="sc-iwyWTf kBlLYH"></div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Креативная индустрия</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Колодинская Янина Олеговна</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Безопасность информационных систем</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Пашори Виктор Игоревич</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <!--<div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>-->
+                                    <div class="sc-pGacB gaiJRa">Подготовка к курсовой работе з дисциплины: "Методы та сбособы защиты информации"</div>
+                                    <!--<div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Колодинская Янина Олеговна</a>
+                                        <img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Моделирование систем</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Букатов Дмитрий Васильевич</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-iBPTik dGpQBt fzwPwA">Прак</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Професмональный английский язык</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Гараган Кристина Олеговна</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-kfzBvY IVCfG">
+                                <div class="sc-bdfBQB sc-fKFxtB hNFxNP kjVeFE">
+                                    <div class="sc-bBXrwG lfsYSc">11.30</div>
+                                    <div class="sc-iwyWTf kBlLYH"></div>
+                                </div>
+                            </div>
+                            <div class="sc-hBEYId eSohnc"></div>
+                            <div class="sc-hBEYId eSohnc"></div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <!--<div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-fubCzh dGpQBt ejlNuV">Лек</div>
+                                    </div>-->
+                                    <div class="sc-pGacB gaiJRa">Подготовка к курсовой работе з дисциплины: "Методы та сбособы защиты информации"</div>
+                                    <!--<div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Колодинская Янина Олеговна</a>
+                                        <img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="sc-eCstlR XelGi">
+                                <div>
+                                    <div class="sc-bdfBQB sc-bqyKOL cfbwBT jfqwnP">
+                                        <div class="sc-jSgvzq sc-iBPTik dGpQBt fzwPwA">Прак</div>
+                                    </div>
+                                    <div class="sc-pGacB gaiJRa">Безопасность информационных систем</div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/teacher.svg" alt="teacher" class="sc-gsTEea kzWQGg">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Пашори Виктор Игоревич</a>
+                                        <!--<img class="sc-gsTEea kzWQGg kaGDSs" src="/static/media/class.svg" alt="class">
+                                        <a class="sc-hKgJUU kAzpQD">Кабинет 347</a>-->
+                                    </div>
+                                    <div class="sc-bdfBQB sc-jrAFXE sc-kEjbQP cfbwBT dAXgGz hleEIG">
+                                        <img src="/static/media/link.svg" alt="teacher" class="sc-gsTEea kzWQGg kaGDSs">
+                                        <a class="sc-hKgJUU kAzpQD" href="">Ссылка на Zoom</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-kfzBvY IVCfG">
+                                <div class="sc-bdfBQB sc-fKFxtB hNFxNP kjVeFE">
+                                    <div class="sc-bBXrwG lfsYSc">12.45</div>
+                                    <div class="sc-iwyWTf kBlLYH"></div>
+                                </div>
+                            </div>
+                            <div class="sc-hBEYId eSohnc"></div>
+                            <div class="sc-kfzBvY IVCfG">
+                                <div class="sc-bdfBQB sc-fKFxtB hNFxNP kjVeFE">
+                                    <div class="sc-bBXrwG lfsYSc">14.00</div>
+                                    <div class="sc-iwyWTf kBlLYH"></div>
+                                </div>
+                            </div>
+                            <div class="sc-hBEYId eSohnc"></div>
+                            <div class="sc-kfzBvY IVCfG">
+                                <div class="sc-bdfBQB sc-fKFxtB hNFxNP kjVeFE">
+                                    <div class="sc-bBXrwG lfsYSc">15.15</div>
+                                    <div class="sc-iwyWTf kBlLYH"></div>
+                                </div>
+                            </div>
+                            <div class="sc-hBEYId eSohnc"></div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
