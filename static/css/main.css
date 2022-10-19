@@ -823,12 +823,12 @@ input:checked + .slider::before {
 
 /* Иконки луны и солнца при смене темы */
 .checker::before {
-    content: url(/static/media/moon.svg);
+    content: url(static/media/moon.svg);
     left: -45px;
 }
 
 .checker::after {
-    content: url(/static/media/sun.svg);
+    content: url(static/media/sun.svg);
     right: -45px;
 }
 
